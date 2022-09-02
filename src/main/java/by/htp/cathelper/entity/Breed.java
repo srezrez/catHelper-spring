@@ -16,7 +16,7 @@ public class Breed {
     @Column(name="title")
     private String title;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="cat",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="breed",
             cascade= CascadeType.ALL)
     private List<Cat> cats;
 

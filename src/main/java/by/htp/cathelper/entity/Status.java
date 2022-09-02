@@ -22,7 +22,7 @@ public class Status {
     @Column(name="note")
     private String note;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="request",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="status",
             cascade= CascadeType.ALL)
     private List<Request> requests;
 

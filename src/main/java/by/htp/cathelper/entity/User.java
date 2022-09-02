@@ -37,11 +37,11 @@ public class User {
     @JoinColumn(name="id_activity")
     private Activity activity;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="cat",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="owner",
             cascade= CascadeType.ALL)
     private List<Cat> cats;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="request",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="requester",
             cascade= CascadeType.ALL)
     private List<Request> requests;
 

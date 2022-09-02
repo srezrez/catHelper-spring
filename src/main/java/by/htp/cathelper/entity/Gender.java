@@ -19,7 +19,7 @@ public class Gender {
     @Column(name="title")
     private String title;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="cat",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="gender",
             cascade= CascadeType.ALL)
     private List<Cat> cats;
 

@@ -16,7 +16,7 @@ public class DocumentType {
     @Column(name="title")
     private String title;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="document",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="documentType",
             cascade= CascadeType.ALL)
     private List<Document> documents;
 

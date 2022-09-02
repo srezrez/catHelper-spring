@@ -19,7 +19,7 @@ public class Activity {
     @Column(name="title")
     private String title;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="user",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="activity",
         cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                 CascadeType.DETACH, CascadeType.REFRESH})
     private List<User> users;

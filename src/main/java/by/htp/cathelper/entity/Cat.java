@@ -32,11 +32,11 @@ public class Cat {
     @JoinColumn(name="id_gender")
     private Gender gender;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="document",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="cat",
             cascade= CascadeType.ALL)
     private List<Document> documents;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="request",
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="cat",
             cascade= CascadeType.ALL)
     private List<Request> requests;
 
