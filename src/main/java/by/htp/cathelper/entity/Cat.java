@@ -20,6 +20,9 @@ public class Cat {
     @Column(name="birthDate")
     private Date birthDate;
 
+    @Column(name="description")
+    private String description;
+
     @ManyToOne(cascade= {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="id_user_owner")
     private User owner;
@@ -105,6 +108,14 @@ public class Cat {
 
     public void setRequests(List<Request> requests) {
         this.requests = requests;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

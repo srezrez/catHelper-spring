@@ -13,5 +13,7 @@
 <body>
 <h2>Hello from my app</h2>
 
+<a href="cat/showCatCatalog">ShowCatCatalog</a>
+
 </body>
 </html>
