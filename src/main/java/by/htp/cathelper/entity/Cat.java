@@ -119,4 +119,16 @@ public class Cat {
     public int hashCode() {
         return Objects.hash(id, name, birthDate, owner, breed, gender, documents, requests);
     }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", owner=" + owner +
+                ", breed=" + breed +
+                ", gender=" + gender +
+                '}';
+    }
 }
