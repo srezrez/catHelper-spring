@@ -23,8 +23,8 @@ public class CatDAOImpl implements CatDAO {
     public List<Cat> getAllFreeCats() {
         Session currentSession = sessionFactory.getCurrentSession();
         Query<Cat> theQuery =
-                currentSession.createQuery("SELECT cat FROM Cat cat LEFT JOIN cat.requests req LEFT JOIN req.status st where SIZE(cat.requests) = 0 OR st.key != :acceptedKey")
-                        .setParameter("acceptedKey", STATUS_ACCEPTED);
+                currentSession.createQuery("SELECT cat FROM Cat cat LEFT JOIN cat.requests req LEFT JOIN req.status st where SIZE(cat.requests) = 0 OR st.key != :key")
+                        .setParameter("key", STATUS_ACCEPTED);
         List<Cat> cats = theQuery.getResultList();
         return cats;
     }
@@ -37,5 +37,12 @@ public class CatDAOImpl implements CatDAO {
                         .setParameter("ownerId", ownerId);
         List<Cat> cats = theQuery.getResultList();
         return cats;
+    }
+
+    @Override
+    public Cat getCat(int catId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Cat cat = currentSession.get(Cat.class, catId);
+        return cat;
     }
 }

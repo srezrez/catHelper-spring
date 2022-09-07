@@ -8,4 +8,5 @@ import java.util.List;
 public interface RequestService {
 
     List<Request> getAllUserRequests(int requesterId, int statusId);
+    void saveRequest(int catId, int requesterId);
 }

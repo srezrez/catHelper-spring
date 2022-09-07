@@ -12,5 +12,6 @@ public interface CatService {
 
     List<CatViewModel> getAllFreeCats();
     List<Cat> getAddedCats(int ownerId);
+    CatViewModel getCatInfo(int catId);
 
 }

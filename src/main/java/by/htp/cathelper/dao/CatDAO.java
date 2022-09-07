@@ -8,4 +8,5 @@ public interface CatDAO {
 
     List<Cat> getAllFreeCats();
     List<Cat> getAddedCats(int ownerId);
+    Cat getCat(int catId);
 }

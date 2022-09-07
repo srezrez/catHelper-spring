@@ -1,9 +1,7 @@
 package by.htp.cathelper.dao.impl;
 
 import by.htp.cathelper.dao.RequestDAO;
-import by.htp.cathelper.entity.Cat;
 import by.htp.cathelper.entity.Request;
-import by.htp.cathelper.entity.Status;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -27,5 +25,11 @@ public class RequestDAOImpl implements RequestDAO {
                         .setParameter("stat", statusId);
         List<Request> requests = theQuery.getResultList();
         return requests;
+    }
+
+    @Override
+    public void saveRequest(Request request) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.saveOrUpdate(request);
     }
 }

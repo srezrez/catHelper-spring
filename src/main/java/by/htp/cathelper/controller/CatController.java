@@ -28,12 +28,10 @@ public class CatController {
     }
 
     @RequestMapping("/showCatInfo")
-    public String catInfo(@RequestParam("catId") int catId) {
-        //System.out.println("catId: ", catId);
-//        List<Activity> activityList = activityService.getAll();
-//        List<Cat> cats = catService.getAddedCats(2);
-//        List<Request> requests = requestService.getAllUserRequests(2, 2);
-//        requests.forEach(System.out::println);
-        return "home";
+    public String catInfo(@RequestParam("catId") int catId, Model model) {
+        System.out.println("catId: " + catId);
+        CatViewModel catViewModel = catService.getCatInfo(catId);
+        model.addAttribute("cat", catViewModel);
+        return "cat-info";
     }
 }

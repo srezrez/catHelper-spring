@@ -8,4 +8,5 @@ import java.util.List;
 public interface RequestDAO {
 
     List<Request> getAllUserRequests(int requesterId, int statusId);
+    void saveRequest(Request request);
 }

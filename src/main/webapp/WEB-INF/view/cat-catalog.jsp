@@ -27,7 +27,8 @@
                 <c:param name="catId" value="${cat.id}" />
             </c:url>
             <tr>
-                <td><img src='${cat.document.path}' style="width:70px;height:90px;"/> </td>
+<%--                <td><img src='${cat.document.path}' style="width:70px;height:90px;"/> </td>--%>
+                <td>${cat.document.path}</td>
                 <td>${cat.name}</td>
                 <td>${cat.age}</td>
                 <td>${cat.breed.title}</td>

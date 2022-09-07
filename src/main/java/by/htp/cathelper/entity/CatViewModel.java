@@ -9,6 +9,7 @@ public class CatViewModel {
     private Gender gender;
     private Document document;
     private String description;
+    private int ownerId;
 
     public CatViewModel() {
     }
@@ -67,5 +68,13 @@ public class CatViewModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 }

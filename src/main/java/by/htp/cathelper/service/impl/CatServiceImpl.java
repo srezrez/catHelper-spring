@@ -34,6 +34,22 @@ public class CatServiceImpl implements CatService {
         return catDAO.getAddedCats(ownerId);
     }
 
+    @Transactional
+    @Override
+    public CatViewModel getCatInfo(int catId) {
+        Cat cat = catDAO.getCat(catId);
+        CatViewModel catViewModel = new CatViewModel();
+        catViewModel.setId(cat.getId());
+        catViewModel.setName(cat.getName());
+        catViewModel.setAge(calculateAge(cat.getBirthDate()));
+        catViewModel.setDescription(cat.getDescription());
+        catViewModel.setGender(cat.getGender());
+        catViewModel.setBreed(cat.getBreed());
+        catViewModel.setOwnerId(cat.getOwner().getId());
+        catViewModel.setDocument(cat.getDocuments().get(0));
+        return catViewModel;
+    }
+
     private List<CatViewModel> createCatViewModelList(List<Cat> cats) {
         List<CatViewModel> catViewModels;
         catViewModels = cats.stream().map(x -> {
@@ -45,6 +61,7 @@ public class CatServiceImpl implements CatService {
             catViewModel.setGender(x.getGender());
             catViewModel.setDocument(x.getDocuments().get(0));
             catViewModel.setDescription(x.getDescription());
+            catViewModel.setOwnerId(x.getOwner().getId());
             return catViewModel;
         }).collect(Collectors.toList());
         return catViewModels;
