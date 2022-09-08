@@ -2,7 +2,9 @@ package by.htp.cathelper.service.impl;
 
 import by.htp.cathelper.dao.CatDAO;
 import by.htp.cathelper.entity.Cat;
-import by.htp.cathelper.entity.CatViewModel;
+import by.htp.cathelper.entity.Request;
+import by.htp.cathelper.viewmodel.AddedCatViewModel;
+import by.htp.cathelper.viewmodel.CatViewModel;
 import by.htp.cathelper.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,10 @@ public class CatServiceImpl implements CatService {
 
     @Transactional
     @Override
-    public List<Cat> getAddedCats(int ownerId) {
-        return catDAO.getAddedCats(ownerId);
+    public List<AddedCatViewModel> getAddedCats(int ownerId) {
+        List<Cat> cats = catDAO.getAddedCats(ownerId);
+        List<AddedCatViewModel> addedCatViewModels = createAddedCatViewModelList(cats);
+        return addedCatViewModels;
     }
 
     @Transactional
@@ -67,6 +71,18 @@ public class CatServiceImpl implements CatService {
         return catViewModels;
     }
 
+    private List<AddedCatViewModel> createAddedCatViewModelList(List<Cat> cats) {
+        List<AddedCatViewModel> addedCatViewModels;
+        addedCatViewModels = cats.stream().map(x -> {
+            AddedCatViewModel addedCatViewModel = new AddedCatViewModel();
+            addedCatViewModel.setCat(x);
+            addedCatViewModel.setAge(calculateAge(x.getBirthDate()));
+            addedCatViewModel.setActiveRequestsAmount(calculateActiveRequestAmount(x.getRequests()));
+            return addedCatViewModel;
+        }).collect(Collectors.toList());
+        return addedCatViewModels;
+    }
+
     private String calculateAge(Date date) {
         int years = Period.between(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), java.time.LocalDate.now()).getYears();
         if (years == 0) {
@@ -74,5 +90,15 @@ public class CatServiceImpl implements CatService {
             return months + " (месяцев)";
         }
         return years + " (лет)";
+    }
+
+    private int calculateActiveRequestAmount(List<Request> requests){
+        int activeReqAmount = 0;
+        for(Request req: requests){
+            if(req.getStatus().getKey().equals("REQUEST_CREATED")) {
+                activeReqAmount++;
+            }
+        }
+        return activeReqAmount;
     }
 }

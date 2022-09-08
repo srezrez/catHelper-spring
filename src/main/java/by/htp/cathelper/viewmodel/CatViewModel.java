@@ -1,4 +1,8 @@
-package by.htp.cathelper.entity;
+package by.htp.cathelper.viewmodel;
+
+import by.htp.cathelper.entity.Breed;
+import by.htp.cathelper.entity.Document;
+import by.htp.cathelper.entity.Gender;
 
 public class CatViewModel {
 

@@ -1,8 +1,6 @@
 package by.htp.cathelper.controller;
 
-import by.htp.cathelper.entity.Cat;
-import by.htp.cathelper.entity.CatViewModel;
-import by.htp.cathelper.entity.Request;
+import by.htp.cathelper.viewmodel.CatViewModel;
 import by.htp.cathelper.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
