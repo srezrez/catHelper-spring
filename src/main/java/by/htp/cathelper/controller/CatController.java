@@ -1,5 +1,6 @@
 package by.htp.cathelper.controller;
 
+import by.htp.cathelper.viewmodel.AddedCatViewModel;
 import by.htp.cathelper.viewmodel.CatViewModel;
 import by.htp.cathelper.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class CatController {
         CatViewModel catViewModel = catService.getCatInfo(catId);
         model.addAttribute("cat", catViewModel);
         return "cat-info";
+    }
+
+    @RequestMapping("/addedCats")
+    public String addedCats(Model model) {
+        List<AddedCatViewModel> cats = catService.getAddedCats(1);
+        model.addAttribute("addedCatList", cats);
+        return "added-cat-list";
     }
 }
