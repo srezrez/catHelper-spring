@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static by.htp.cathelper.util.ConstantPool.STATUS_CREATED;
+
 @Repository
 public class RequestDAOImpl implements RequestDAO {
 
@@ -31,5 +33,16 @@ public class RequestDAOImpl implements RequestDAO {
     public void saveRequest(Request request) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.saveOrUpdate(request);
+    }
+
+    @Override
+    public List<Request> getActiveRequests(int catId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<Request> query =
+                currentSession.createQuery("SELECT req FROM Request req JOIN req.cat cat JOIN req.status st WHERE cat.id = :catid AND st.key = :stkey ORDER BY date(req.dateRequest) DESC")
+                        .setParameter("catid", catId)
+                        .setParameter("stkey", STATUS_CREATED);
+        List<Request> requests = query.getResultList();
+        return requests;
     }
 }

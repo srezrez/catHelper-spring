@@ -31,7 +31,7 @@
         <th width="30%"></th>
     </tr>
     <c:forEach items="${addedCatList}" var="cat">
-        <c:url var="moreLink" value="/cat/showCatInfo">
+        <c:url var="moreLink" value="/request/showCatRequest">
             <c:param name="catId" value="${cat.cat.id}" />
         </c:url>
         <tr>

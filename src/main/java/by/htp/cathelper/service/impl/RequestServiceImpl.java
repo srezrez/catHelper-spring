@@ -9,6 +9,7 @@ import by.htp.cathelper.entity.Request;
 import by.htp.cathelper.entity.Status;
 import by.htp.cathelper.entity.User;
 import by.htp.cathelper.service.RequestService;
+import by.htp.cathelper.viewmodel.RequestViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,16 @@ public class RequestServiceImpl implements RequestService {
         request.setCat(cat);
         request.setStatus(status);
         requestDAO.saveRequest(request);
+    }
+
+    @Transactional
+    @Override
+    public RequestViewModel getCurrentRequest(int catId) {
+        List<Request> requests = requestDAO.getActiveRequests(catId);
+        RequestViewModel requestViewModel = new RequestViewModel();
+        requestViewModel.setActiveRequestAmount(requests.size());
+        requestViewModel.setId(requests.get(0).getId());
+        requestViewModel.setRequester(requests.get(0).getRequester());
+        return requestViewModel;
     }
 }

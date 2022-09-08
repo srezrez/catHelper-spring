@@ -9,4 +9,5 @@ public interface RequestDAO {
 
     List<Request> getAllUserRequests(int requesterId, int statusId);
     void saveRequest(Request request);
+    List<Request> getActiveRequests(int catId);
 }
