@@ -60,4 +60,15 @@ public class RequestServiceImpl implements RequestService {
         requestViewModel.setRequester(requests.get(0).getRequester());
         return requestViewModel;
     }
+
+    @Transactional
+    @Override
+    public void setRequestDecision(int requestId, String decision) {
+        Request request = requestDAO.getRequest(requestId);
+        Status status = statusDAO.getStatus(decision);
+        request.setStatus(status);
+        Date issueDate = new Date();
+        request.setDateIssue(issueDate);
+        requestDAO.saveRequest(request);
+    }
 }

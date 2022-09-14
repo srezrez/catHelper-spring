@@ -4,4 +4,5 @@ import by.htp.cathelper.entity.Status;
 
 public interface StatusDAO {
     Status getStatus(int statusId);
+    Status getStatus(String key);
 }

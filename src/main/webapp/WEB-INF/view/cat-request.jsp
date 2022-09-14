@@ -23,11 +23,13 @@
 <body>
 <jsp:include page="header.jsp" />
 <table class ="table">
-    <c:url var="approveRequest" value="/request/approveRequest">
+    <c:url var="approveRequest" value="/request/requestDecision">
         <c:param name="requestId" value="${request.id}" />
+        <c:param name="decision" value="REQUEST_ACCEPTED" />
     </c:url>
-    <c:url var="rejectRequest" value="/request/rejectRequest">
+    <c:url var="rejectRequest" value="/request/requestDecision">
         <c:param name="requestId" value="${request.id}" />
+        <c:param name="decision" value="REQUEST_REJECTED" />
     </c:url>
     <tr>
         <th width="25%">Active requests amount</th>

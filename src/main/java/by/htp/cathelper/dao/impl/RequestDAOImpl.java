@@ -1,6 +1,7 @@
 package by.htp.cathelper.dao.impl;
 
 import by.htp.cathelper.dao.RequestDAO;
+import by.htp.cathelper.entity.Cat;
 import by.htp.cathelper.entity.Request;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,5 +45,12 @@ public class RequestDAOImpl implements RequestDAO {
                         .setParameter("stkey", STATUS_CREATED);
         List<Request> requests = query.getResultList();
         return requests;
+    }
+
+    @Override
+    public Request getRequest(int requestId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Request request = currentSession.get(Request.class, requestId);
+        return request;
     }
 }

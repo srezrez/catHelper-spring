@@ -29,13 +29,9 @@ public class RequestController {
         return "cat-request";
     }
 
-    @RequestMapping("/approveRequest")
-    public String approveRequest(){
-        return null;
-    }
-
-    @RequestMapping("/rejectRequest")
-    public String rejectRequest(){
-        return null;
+    @RequestMapping("/requestDecision")
+    public String requestDecision(@RequestParam("requestId") int requestId, @RequestParam("decision") String decision){
+        requestService.setRequestDecision(requestId, decision);
+        return "home";
     }
 }
